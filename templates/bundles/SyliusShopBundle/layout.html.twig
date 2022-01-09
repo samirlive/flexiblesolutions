@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}{{ sylius.channel.name }}{% endblock %}</title>
+       <meta charset="utf-8">
+    <meta name="description" CONTENT="{% block description %}{{ sylius.channel.description }}{% endblock %}">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    
+
+    {% block metatags %}
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ sylius_template_event('sylius.shop.layout.stylesheets') }}
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        
+        
+        <style>
+
+
+.foi-header.landing-header{
+        background-image:url('{{asset('frontend/assets/images/bg-1.jpg')}}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: initial;
+}
+        
+body {
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #000000;
+    text-align: left;
+    background-color: #ffffff !important;
+    font-family:'Roboto Condensed','Noto Kufi Arabic', sans-serif;
+}
+.foi-navbar .navbar-nav .nav-link {
+    font-size: 14px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+
+
+
+.menu_btn {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  z-index: 20;
+}
+.menu_btn a {
+  font-size: 2em;
+  padding: 20px 15px;
+  display: inline-block;
+  letter-spacing: 3px;
+  transition: color ease-in-out 0.4s;
+  
+  
+  color: #fff;
+  {% if app.request.get('_route') != "sylius_shop_homepage" %}  color: #333;{% endif %}
+}
+.menu_btn a:hover, .menu_btn a:focus, .menu_btn a:focus-within {
+  color: #e2001a;
+}
+
+nav {
+  display: block;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  width: 0%;
+}
+.panel--left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #292b2f;
+  right: 50%;
+}
+.panel--right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2f3135;
+  right: 0;
+}
+
+.line {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 1em;
+  width: 28px;
+  height: 1px;
+  background: rgba(130, 130, 130, 0.6);
+  opacity: 0;
+}
+
+.navigation ul li,
+.navigation ul li a,
+.navigation ul li a span {
+  position: relative;
+  display: block;
+}
+
+.navigation {
+  width: 100%;
+  height: 100%;
+  position: initial;
+  top: 0;
+  z-index: 10;
+}
+.navigation h2 {
+  width: 0;
+  height: 0;
+  text-indent: -9999px;
+  margin:0;
+}
+.navigation .menu {
+  display: flex;
+  flex: 8;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  transform: translate(-100%, 0);
+}
+.navigation .menu > li {
+  line-height: 30px;
+  font-size: 20px;
+  font-size: 1.25em;
+  font-size: 1.25rem;
+  padding: 0.4em 0 0.4em 42px;
+  margin: 0.2em 0;
+  text-align: left;
+  float: left;
+  clear: both;
+}
+.navigation .menu > li > a {
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color ease-in-out 0.4s;
+}
+.navigation .menu > li > a:hover, .navigation .menu > li > a:focus, .navigation .menu > li > a:focus-within {
+  color: #e2001a;
+}
+.navigation .menu > li > a > span {
+  top: 0;
+  text-transform: capitalize;
+}
+.navigation .sub-menu > li {
+  display: block;
+  float: left;
+  clear: both;
+  line-height: 30px;
+  font-size: 14px;
+  font-size: 0.875em;
+  font-size: 0.875rem;
+  padding: 0;
+  margin: 0;
+}
+.navigation .sub-menu > li > a {
+  color: #828282;
+  text-transform: none;
+  overflow: hidden;
+  transition: color ease-in-out 0.4s;
+}
+.navigation .sub-menu > li > a:hover, .navigation .sub-menu > li > a:focus, .navigation .sub-menu > li > a:focus-within {
+  color: #e2001a;
+}
+
+.litem {
+  transform: translate(0, -100%);
+}
+
+.footer.menu {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 32px 70px;
+  opacity: 0;
+  font-size: 12px;
+  font-size: 0.75em;
+  font-size: 0.75rem;
+}
+.footer__gredits, .footer__social {
+  display: block;
+  color: #828282;
+}
+.footer__gredits > a, .footer__social > a {
+  color: #828282;
+  margin: 0 5px;
+  text-decoration: none;
+  transition: color ease-in-out 0.4s;
+}
+.footer__gredits > a:hover, .footer__gredits > a:focus, .footer__gredits > a:focus-within, .footer__social > a:hover, .footer__social > a:focus, .footer__social > a:focus-within {
+  color: #e2001a;
+}
+
+.close_btn {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+}
+.close_btn a {
+  font-size: 1em;
+  padding: 20px 15px;
+  display: inline-block;
+  letter-spacing: 3px;
+  transition: color ease-in-out 0.4s;
+  color: #fff;
+}
+.close_btn a:hover, .close_btn a:focus, .close_btn a:focus-within {
+  color: #e2001a;
+}
+
+.data {
+  padding: 0 20%;
+}
+.data__content {
+  font-family: open_sansregular, arial;
+  font-size: 26px;
+  font-size: 1.625em;
+  font-size: 1.625rem;
+  line-height: 38px;
+  color: #828282;
+  font-style: italic;
+  text-align: justify;
+  opacity: 0;
+  transform: translate(0, 50px);
+}
+@media (max-width: 680px) {
+  .data__content {
+    font-size: 16px;
+    font-size: 1em;
+    font-size: 1rem;
+    line-height: 18px;
+  }
+}
+.data__sub {
+  color: #fff;
+  float: left;
+  margin-top: 2%;
+  font-size: 11px;
+  font-size: 0.6875em;
+  font-size: 0.6875rem;
+  opacity: 0;
+  transform: translate(0, 50px);
+}
+
+            .cart.ui.button {
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #0e0e0e59 none;
+    color: rgb(255 255 255 / 100%);
+    margin: 0 0.25em 0 0;
+    padding: 0.78571429em 1.5em 0.78571429em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cart.ui.button:hover{
+    background: #1b1c1d none;
+}
+            .ui.menu {
+                margin: 0;
+            }
+            .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+                    color: rgb(153 235 52 / 90%);
+                    font-weight: bold;
+            }
+            
+            
+            
+            
+.card-show{
+       /* box-shadow: 20px 33px 70px 17px #d5d5d5;*/
+}
+
+
+
+.bounce {
+  display: inline-block;
+  position: relative;
+  -moz-animation: bounce 0.85s infinite linear;
+  -o-animation: bounce 0.85s infinite linear;
+  -webkit-animation: bounce 0.85s infinite linear;
+  animation: bounce 0.85s infinite linear;
+  colr:000;
+}
+
+@-webkit-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-moz-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-o-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-ms-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+
+
+
+    .vTextLR {
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    -webkit-transform: translateY(-73px) rotate(
+-180deg);
+    -ms-transform: translateY(-73px) rotate(-180deg);
+    transform: translateY(-73px) rotate(
+-180deg);
+}
+
+.social-icons-box .social-icon {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    font-size:1rem;
+}
+
+.social-icon{
+    display: inline-block;
+    -webkit-transition: opacity .35s cubic-bezier(0,-.04,1,1.08);
+    -o-transition: opacity .35s cubic-bezier(0,-.04,1,1.08);
+    transition: opacity .35s cubic-bezier(0,-.04,1,1.08);
+}
+
+mark, .mark {
+    padding: 0.2em;
+    color: white;
+    background-color: #96c50c;
+}
+.extra-menu a,.extra-menu a:hover,.extra-menu .vTextLR,.extra-menu .cart.button,.extra-menu .nav-link,.extra-menu .navbar-light .navbar-toggler{
+    color:#333333;
+}
+.extra-menu{
+    opacity:0.7;
+}
+.extra-menu:hover{
+    opacity:1;
+}
+.foi-header {
+     padding-top: 5px;
+}
+
+
+
+@media (max-width: 600px) {
+      .container {
+        padding-right: 55px;
+        padding-left: 55px;
+    }
+    .container-mobile{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .logo-flexible-solutions{
+        max-width:200px;
+    }
+}
+
+        </style>
+    {% endblock %}
+    
+    {{ sylius_template_event('sylius.shop.layout.head') }}
+    
+    <link rel="icon" type="image/png" href="{{asset('frontend/assets/images/favicon-flexible-solutions.png')}}" />
+
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88007364-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-88007364-1');
+    </script>
+</head>
+
+<body class="pushable">
+{{ sylius_template_event('sylius.shop.layout.before_body') }}
+<div class="pusher">
+    {% block top %}
+    
+    
+    
+        {#
+        <div id="menu" class="ui large sticky inverted stackable menu">
+            {{ sylius_template_event('sylius.shop.layout.topbar') }}
+        </div>
+        
+        #}
+    {% endblock %}
+        {% block header %}
+            
+                {{ sylius_template_event('sylius.shop.layout.header') }}
+            
+        {% endblock %}
+        
+        {% set current_path = app.request.get('_route') %}
+        
+    <div class="ui" {% if app.request.get('_route') != "sylius_shop_homepage" %}style="padding:160px 0 0;"{% endif %}>
+
+
+        {% include '@SyliusShop/_flashes.html.twig' %}
+
+        {{ sylius_template_event('sylius.shop.layout.before_content') }}
+        
+                {% block content %}
+                {% endblock %}
+
+        
+        
+        {{ sylius_template_event('sylius.shop.layout.after_content') }}
+    </div>
+
+    {% block footer %}
+        {% include '@SyliusShop/_footer.html.twig' %}
+    {% endblock %}
+</div>
+
+{% block javascripts %}
+    {{ sylius_template_event('sylius.shop.layout.javascripts') }}
+    
+{% endblock %}
+
+{% include '@SyliusUi/Modal/_confirmation.html.twig' %}
+{{ sylius_template_event('sylius.shop.layout.after_body') }}
+</body>
+</html>

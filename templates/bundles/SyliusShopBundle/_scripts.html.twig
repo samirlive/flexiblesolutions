@@ -1,0 +1,202 @@
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'assets/shop/js/app.js'} %}
+
+
+    <script src="{{asset('frontend/assets/vendors/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('frontend/assets/vendors/popper.js/popper.min.js') }}"></script>
+    <script src="{{asset('frontend/assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js" integrity="sha512-lYAcY5E6LZVeNB3Pky37SxbYKzo8A68MzKFoPg5oTuolhRm36D+YRvkrAQS4JuKsaGYeJ5KA5taMEtpNlPUeOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" integrity="sha512-9CWGXFSJ+/X0LWzSRCZFsOPhSfm6jbnL+Mpqo0o8Ke2SYr8rCTqb4/wGm+9n13HtDE1NQpAEOrMecDZw4FXQGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js" ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+  
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 400, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 800, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+});
+  </script>
+    
+    <script>
+    
+    
+
+        
+
+    
+    $(document).ready(function() {
+        
+        
+        {% if app.request.get('_route') == "sylius_shop_homepage" %}  
+       var screenHeight = $(window).height();
+        screenHeight = screenHeight -20;
+        $("#landing-header").height(screenHeight);
+        
+         $(".extra-menu a,.extra-menu a:hover,.extra-menu .vTextLR,.extra-menu .cart.button,.extra-menu .nav-link,.extra-menu .navbar-toggler").css({
+                    "color":"#fff",
+                    
+                });
+        $(".extra-menu ").css({
+                    "background":"linear-gradient(180deg, #00000040, #00000000)"
+                    
+                });
+                
+        
+                
+        
+                
+        $(".logo-flexible-solutions").attr("src","{{ asset('assets/shop/img/logo-flexible-solutions.png') }}");
+        
+        $(window).scroll(function(event){
+            var scroll = $(window).scrollTop();
+            
+            
+            if( scroll > screenHeight){
+                console.log(scroll);
+                $(".extra-menu a,.extra-menu a:hover,.extra-menu .vTextLR,.extra-menu .cart.button,.extra-menu .nav-link,.extra-menu .navbar-toggler").css({
+                    "color":"#333",
+                });
+                $(".extra-menu").css({
+                    "background":"linear-gradient(180deg, #ffffff, #ffffff10)"
+                });
+                $(".logo-flexible-solutions").attr("src","{{ asset('assets/shop/img/logo-flexible-solutions-black.png') }}");
+            }else{
+                 $(".extra-menu a,.extra-menu a:hover,.extra-menu .vTextLR,.extra-menu .cart.button,.extra-menu .nav-link,.extra-menu .navbar-toggler").css({
+                    "color":"#fff",
+                    
+                });
+                 $(".extra-menu ").css({
+                    "background":"linear-gradient(180deg, #00000040, #00000000)"
+                });
+                $(".logo-flexible-solutions").attr("src","{{ asset('assets/shop/img/logo-flexible-solutions.png') }}");
+            }
+            
+             
+                
+                
+        });
+        
+        {% endif %}
+    
+        $("#landing-header").vegas({
+            delay: 180000,
+            //firstTransition:20000,
+            slides: [
+                
+                { src: "{{asset('frontend/assets/images/bg-1.jpg')}}",
+                
+                    video: {
+                            src: [
+                                
+                                //'{{asset('frontend/assets/videos/extrait-slider-1.mp4')}}',
+                                '{{asset('frontend/assets/videos/slider-beta.mp4')}}',
+                                //'https://previews.customer.envatousercontent.com/h264-video-previews/e1257eed-c2dd-4fbd-898d-bf82264f055e/24091760.mp4?_=2',
+                                //'https://previews.customer.envatousercontent.com/h264-video-previews/402fee16-706c-4278-aebf-088f79b3ea66/24175023.mp4?_=2',
+                                //'https://previews.customer.envatousercontent.com/h264-video-previews/1872e2dd-31d6-4ba6-998e-c96cfa197990/2289292.mp4?_=2',
+                                //'https://previews.customer.envatousercontent.com/h264-video-previews/2089a9e4-6395-4fdb-8300-44872375151e/1721280.mp4?_=2',
+                            ],
+                            loop: true,
+                            mute: true
+                        }
+                },
+               /* 
+                { src: "{{asset('frontend/assets/images/bg-1.jpg')}}" },
+                { src: "{{asset('frontend/assets/images/bg-2.jpg')}}" },
+                { src: "{{asset('frontend/assets/images/bg-3.jpg')}}" },
+                */
+            ],
+            //overlay: 'https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/overlays/05.png'
+        });
+        
+        
+ 
+          $("#owlcarousel,.owlcarousel").owlCarousel({
+ 
+    // Most important owl features
+    items : 6,
+    itemsDesktop : [1199,6],
+    itemsDesktopSmall : [980,5],
+    itemsTablet: [768,4],
+    itemsTabletSmall: false,
+    itemsMobile : [479,3],
+    singleItem : false,
+ 
+    //Basic Speeds
+    slideSpeed : 200,
+    paginationSpeed : 500,
+    rewindSpeed : 800,
+ 
+    //Autoplay
+    autoPlay : true,
+    stopOnHover : true,
+ 
+    // Navigation
+    navigation : false,
+    navigationText : ["<",">"],
+    rewindNav : true,
+    scrollPerPage : false,
+ 
+    //Pagination
+    pagination : true,
+    paginationNumbers: false,
+ 
+    // Responsive 
+    responsive: true,
+    responsiveRefreshRate : 200,
+    responsiveBaseWidth: window,
+ 
+    // CSS Styles
+
+ 
+    //Lazy load
+    lazyLoad : false,
+    lazyFollow : false,
+ 
+    //Auto height
+    autoHeight : true,
+ 
+    //JSON 
+    jsonPath : false, 
+    jsonSuccess : false,
+ 
+    //Mouse Events
+    mouseDrag : true,
+    touchDrag : true,
+ 
+    //Transitions
+    transitionStyle : false,
+ 
+    // Other
+    addClassActive : false,
+ 
+    //Callbacks
+    beforeInit: false, 
+    afterInit: false, 
+    beforeMove: false, 
+    afterMove: false,
+    afterAction: false,
+    startDragging : false
+ 
+});
+         
+        });
+        
+
+        
+    </script>

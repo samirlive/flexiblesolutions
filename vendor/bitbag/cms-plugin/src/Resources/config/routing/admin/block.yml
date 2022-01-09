@@ -1,0 +1,29 @@
+bitbag_sylius_cms_plugin_admin_block:
+    resource: |
+        alias: bitbag_sylius_cms_plugin.block
+        section: admin
+        templates: '@BitBagSyliusCmsPlugin/CrudUi'
+        except: ['show']
+        redirect: update
+        grid: bitbag_sylius_cms_plugin_admin_block
+        permission: true
+        vars:
+            all:
+                header: bitbag_sylius_cms_plugin.ui.blocks_header
+                subheader: bitbag_sylius_cms_plugin.ui.blocks_subheader
+                templates:
+                    form: "@BitBagSyliusCmsPlugin/Block/Crud/_form.html.twig"
+            index:
+                icon: block layout
+            route:
+                parameters:
+                    code: $type
+    type: sylius.resource
+
+bitbag_sylius_cms_plugin_admin_block_preview:
+    path: /block/preview
+    methods: [GET, POST, PUT]
+    defaults:
+        _controller: bitbag_sylius_cms_plugin.controller.block:previewAction
+        _sylius:
+            template: "@BitBagSyliusCmsPlugin/Block/preview.html.twig"

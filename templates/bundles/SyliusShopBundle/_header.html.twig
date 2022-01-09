@@ -1,0 +1,145 @@
+
+
+
+<header class="foi-header extra-menu" 
+
+style="position:fixed;width:100%;z-index:9;background: linear-gradient(180deg, #ffffff, #ffffff9e);"
+
+    >
+    
+    
+    
+    
+    
+    
+        <div class="container container-mobile" style="max-width:1600px;">
+            
+            <nav class="navbar navbar-expand-lg navbar-light foi-navbar text-center">
+            <a href="{{ path('sylius_shop_homepage') }}">
+                
+                
+                
+                <img width="250" src="{{ asset('assets/shop/img/logo-flexible-solutions-black.png') }}" alt="Flexible Solutions logo" class="navbar-brand logo-flexible-solutions" />
+                
+                {#
+                {% if app.request.get('_route') != "sylius_shop_homepage" %}  
+                <img width="300" src="{{ asset('assets/shop/img/logo-flexible-solutions-black.png') }}" alt="Flexible Solutions logo" class="navbar-brand" />
+                {% else %}
+                <img width="300" src="{{ asset('assets/shop/img/logo-flexible-solutions.png') }}" alt="Flexible Solutions logo" class="navbar-brand" />
+                {% endif %}
+                
+                #}
+                </a>
+                <button style="font-size: 1.6rem;" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                   <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('sylius_shop_homepage') }}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <div class="dropdown-menu" aria-labelledby="pagesMenu">
+                                <a class="dropdown-item" href="{{ path('sylius_shop_product_show', {'slug': "flexy-erp", '_locale': "fr_FR"}) }}">Flexy ERP</a>
+                                <a class="dropdown-item" href="{{ bitbag_cms_get_link_for_code('first_page') }}">Test Page CMS</a>
+                                <a class="dropdown-item" href="#">Register</a>
+                                <a class="dropdown-item" href="#">FAQ</a>
+                                <a class="dropdown-item" href="#">404</a>
+                                <a class="dropdown-item" href="#">Careers</a>
+                                <a class="dropdown-item" href="#">Single blog</a>
+                                <a class="dropdown-item" href="#">Privacy policy</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('sylius_shop_homepage') }}">contact</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+
+                            
+                                {% if is_granted('ROLE_USER') %}
+                                <a class="nav-link dropdown-toggle" href="#" id="connexion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'sylius.ui.hello'|trans }} {{ app.user.customer.fullName }}!</a>
+                            <div class="dropdown-menu" aria-labelledby="connexion">
+                                    <a class="dropdown-item"  href="{{ path('sylius_shop_account_dashboard') }}" class="item">{{ 'sylius.ui.my_account'|trans }}</a>
+                                    <a class="dropdown-item"  href="{{ path('sylius_shop_logout') }}" class="item sylius-logout-button" {{ sylius_test_html_attribute('logout-button') }}>{{ 'sylius.ui.logout'|trans }}</a>
+                               
+                            </div>
+                                
+                                   
+                                {% else %}
+                                
+                                                               
+                            <a class="nav-link dropdown-toggle" href="#" id="connexion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'sylius.ui.login'|trans }}</a>
+                            <div class="dropdown-menu" aria-labelledby="connexion">
+                                   <a class="dropdown-item" href="{{ path('sylius_shop_login') }}" class="item">{{ 'sylius.ui.login'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ path('sylius_shop_register') }}" class="item">{{ 'sylius.ui.register'|trans }}</a>
+                            </div>
+                                
+                                    
+                                {% endif %}
+                        </li>
+                        
+                    </ul>
+                    <ul class="navbar-nav mt-2 mt-lg-0">
+                       {{ render(url('sylius_shop_partial_cart_summary', {'template': '@SyliusShop/Cart/_widget.html.twig'})) }}
+                    </ul>
+                </div>
+            </nav>
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        <!-- fixed extra menu -->
+        
+        
+        
+                <span class="text-center" style="position:fixed;z-index:10;bottom:20px;left:calc(50% - 6px);font-size:2rem;">
+            <a href="#body-content" class="bounce">
+                <i class="fas fa-chevron-down "></i>
+            </a>
+        </span>
+        <span style="position:fixed;z-index:10;bottom:20px; left:20px;font-size:0.8rem;letter-spacing:3px;opacity: 0.7;opacity: 0.8;">
+            <p class="vTextLR">© 2016 -2022</p>
+        </span>
+        
+        
+        <span style="position:fixed;z-index:10;bottom:calc(30% - 6px); left:20px;font-size:0.8rem;letter-spacing:3px;opacity: 0.7;opacity: 0.8;">
+            
+            {{ render(controller('sylius.controller.shop.locale_switch:renderAction')) }}
+            
+            <br>
+            <br>
+            <br>
+            
+           {{ render(controller('sylius.controller.shop.currency_switch:renderAction')) }}
+        </span>
+        
+        
+        <div class="social-icons-box op_0" style="position:fixed;z-index:10;top:calc(40% - 10px); right:20px;font-size:0.8rem;letter-spacing:2px;">
+             <div class="social-icons">
+                
+            <a rel="noopener" href="#" target="_blank" class="social-icon fb" ><i class="fab fa-facebook-f"></i></a>
+            <a rel="noopener" href="#" target="_blank" class="social-icon fb" ><i class="fab fa-instagram"></i></a>
+            <a rel="noopener" href="#" target="_blank" class="social-icon fb" ><i class="fab fa-linkedin"></i></a>
+            <a rel="noopener" href="#" target="_blank" class="social-icon fb" ><i class="fab fa-youtube"></i></i></a>
+        
+           
+
+    </div>
+</div>
+    </header>
+        
+        
+        

@@ -1,0 +1,13 @@
+sylius_paypal_webhook:
+    resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
+bitbag_sylius_cms_plugin:
+    resource: "@BitBagSyliusCmsPlugin/Resources/config/routing.yml"
+    
+app_shop_contact_action:
+    path: /contact
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.shop.homepage::customAction
+synolia_synolia_maintenance:
+    resource: "@SynoliaSyliusMaintenancePlugin/Resources/config/admin_routing.yaml"
+    prefix: '/%sylius_admin.path_name%'

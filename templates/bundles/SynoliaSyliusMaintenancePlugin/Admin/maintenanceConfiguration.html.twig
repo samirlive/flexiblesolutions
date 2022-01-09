@@ -1,0 +1,39 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}{{ 'maintenance.ui.title'|trans }} {{ parent() }}{% endblock %}
+
+{% form_theme form '@SyliusAdmin/Form/theme.html.twig' %}
+
+{% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+{% set breadcrumbs = [
+	{label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard')},
+	{label: 'maintenance.ui.title'|trans},
+]
+%}
+
+{% block content %}
+	<div id="header" class="ui stackable two column grid">
+		<div class="column">
+		<h1 class="ui header">
+			<i class="circular cube icon"></i>
+			<div class="content">
+				<span>{{ 'maintenance.ui.title'|trans }}</span>
+				<div class="sub header">{{ 'maintenance.ui.subtitle'|trans }}</div>
+			</div>
+		</h1>
+		{{ breadcrumb.crumble(breadcrumbs) }}
+		</div>
+	</div>
+	<div class="ui segment">
+		{{ form_start(form, {'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+		{{ form_row(form.enabled) }}
+		{{ form_row(form.ipAddresses) }}
+		{{ form_row(form.customMessage) }}
+		<div class="two fields">
+			{{ form_row(form.startDate) }}
+			{{ form_row(form.endDate) }}
+		</div>
+		{% include '@SyliusUi/Form/Buttons/_update.html.twig' %}
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

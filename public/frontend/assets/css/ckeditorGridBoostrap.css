@@ -1,0 +1,8 @@
+.row{
+    padding:10px;
+    border:1px dotted #ddd;
+}
+[class*="col-"] {
+    border:1px dotted #ddd;
+    padding:5px;
+}
