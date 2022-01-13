@@ -48905,8 +48905,8 @@
 	      labels: labels,
 	      datasets: [{
 	        data: values,
-	        backgroundColor: 'rgba(26, 187, 156, 0.3)',
-	        borderColor: 'rgba(26, 187, 156, 1)',
+	        backgroundColor: 'rgba(169, 205, 23,0.8)',
+	        borderColor: 'rgba(169, 205, 23,1)',
 	        borderWidth: 1
 	      }]
 	    },

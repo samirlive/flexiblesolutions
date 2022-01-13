@@ -1,0 +1,173 @@
+a {
+    color: #a9cb17;
+}
+
+
+.ui.primary.button,.ui.label{
+    background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+    font-weight: bold;
+    color: #fff;
+    }
+
+    .ui.header .circular.icon {
+        width: 2.5em !important;
+        height: 2.5em !important;
+        font-size: 1em;
+        color: #fff;
+        background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+        box-shadow: none;
+    }
+
+    .ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before, .ui.toggle.checkbox input:focus:checked ~ .box:before, .ui.toggle.checkbox input:focus:checked ~ label:before {
+        background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+    }
+
+
+
+#sidebar.ui.sidebar.vertical.menu .item.active {
+    background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+}
+
+.ui.styled.header{
+    background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+    color: #ffffff;
+    border: none;
+}
+
+.sylius-tree ul .sylius-tree__item .sylius-tree__title {
+    font-weight: bold;
+}
+
+.ui.teal.label, .ui.teal.labels .label {
+    background:linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+    border-color: none;
+    color: #fff!important;
+}
+
+
+
+.ui.button,.ui.teal.button, .ui.teal.buttons .button{
+    background: linear-gradient(to right, #F2C94C, #F2994A);
+    color:#ffffff;
+    font-weight: bold;
+}
+
+.ui.button:hover{
+    background: linear-gradient(to left, #F2C94C, #F2994A);
+    color:#ffffff;
+}
+
+.ui.button.labeled{
+    background:  #F2994A;
+    color:#ffffff;
+}
+.ui.button.labeled:hover{
+    background:  #F2C94C;
+}
+
+.ui.blue.button, .ui.blue.buttons .button,.ui.blue.label, .ui.blue.labels .label{
+    background: linear-gradient(to right, #2F80ED, #56CCF2);
+    color: #fff;
+}
+
+.ui.red.button, .ui.red.buttons .button,.ui.red.button:hover, .ui.red.buttons .button:hover {
+    background: #db2828;
+}
+
+
+.ui.yellow.button, .ui.yellow.buttons .button {
+    background: #515151;
+}
+.ui.yellow.button:hover, .ui.yellow.buttons .button:hover{
+    background: #8c8c8c;
+}
+
+.ui.pagination.menu .active.item {
+
+    background-color: rgb(168 202 21);
+    font-weight: bold;
+    color: white;
+}
+
+
+
+.ui.tiny.statistic>.value, .ui.tiny.statistics .statistic>.value {
+   /* font-size: 2rem!important;*/
+    font-weight: bold;
+    /*color: #ffffff;*/
+}
+
+.ui.statistic>.label, .ui.statistics .statistic>.label{
+   /*color: #ffffff;*/
+}
+
+
+/*bg flexy*/
+
+.bg-primary , .ui.basic.button.bg-primary , .ui.basic.buttons .button.bg-primary  {
+	background: linear-gradient(to left, #9ebd13 0%, #b3d91a 100%) !important;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.bg-pink, .ui.basic.button.bg-pink , .ui.basic.buttons .button.bg-pink   {
+	background: #ee9ca7 !important;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ee9ca7, #ffdde1) !important;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #ee9ca7, #ffdde1) !important;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.bg-orange, .ui.basic.button.bg-orange , .ui.basic.buttons .button.bg-orange   {
+	background: #F2994A !important;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #F2C94C, #F2994A) !important;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #F2C94C, #F2994A) !important;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.bg-purple, .ui.basic.button.bg-purple , .ui.basic.buttons .button.bg-purple  {
+	background: #4e54c8 !important;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8) !important;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #8f94fb, #4e54c8) !important;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.bg-blue, .ui.basic.button.bg-blue , .ui.basic.buttons .button.bg-blue   {
+	background: #56CCF2 !important;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2) !important;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #2F80ED, #56CCF2) !important;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.bg-danger, .ui.basic.button.bg-danger , .ui.basic.buttons .button.bg-danger   {
+	background: #ED213A !important;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #93291E, #ED213A) !important;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #93291E, #ED213A) !important;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+    
