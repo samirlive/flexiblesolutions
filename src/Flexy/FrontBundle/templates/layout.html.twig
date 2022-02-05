@@ -1,29 +1,23 @@
 <!doctype html>
-<html class="no-js" lang="fr">
-    
-<!-- index28:48-->
+<html lang="en">
+
+   <body>
+      <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/index.html">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+ {% include "@Flexy/FrontBundle/templates/_head.html.twig" %}
+
+        {% include "@Flexy/FrontBundle/templates/_header.html.twig" %}
+  
+ 
+    {% block body %}
+        
+    {% endblock %}
+
+    {% include "@Flexy/FrontBundle/templates/_footer.html.twig" %}  
 
 
-    {% include "@Flexy/FrontBundle/templates/_head.html.twig" %}
-    <body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-       
-        {{ render(path('front_header')) }}
-
-        {% block body %}
-
-        {% endblock %}
-
-
-
-        {% include "@Flexy/FrontBundle/templates/_footer.html.twig" %}
-
-        {% block javascripts %}
-            {% include "@Flexy/FrontBundle/templates/_javascripts.html.twig" %}
-        {% endblock %}
-    </body>
-
-<!-- index30:23-->
+    {% include "@Flexy/FrontBundle/templates/_javascripts.html.twig" %} 
+   </body>
 </html>
