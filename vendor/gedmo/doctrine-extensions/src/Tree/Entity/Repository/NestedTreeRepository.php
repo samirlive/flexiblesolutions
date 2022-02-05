@@ -11,6 +11,7 @@ namespace Gedmo\Tree\Entity\Repository;
 
 use Doctrine\ORM\Proxy\Proxy;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Gedmo\Exception\InvalidArgumentException;
 use Gedmo\Exception\UnexpectedValueException;
 use Gedmo\Tool\Wrapper\EntityWrapper;
@@ -99,9 +100,6 @@ class NestedTreeRepository extends AbstractTreeRepository
         return parent::__call($method, $args);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodesQueryBuilder($sortByField = null, $direction = 'asc')
     {
         $meta = $this->getClassMetadata();
@@ -122,17 +120,11 @@ class NestedTreeRepository extends AbstractTreeRepository
         return $qb;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodesQuery($sortByField = null, $direction = 'asc')
     {
         return $this->getRootNodesQueryBuilder($sortByField, $direction)->getQuery();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodes($sortByField = null, $direction = 'asc')
     {
         return $this->getRootNodesQuery($sortByField, $direction)->getResult();
@@ -145,7 +137,7 @@ class NestedTreeRepository extends AbstractTreeRepository
      *
      * @throws InvalidArgumentException if input is not valid
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getPathQueryBuilder($node)
     {
@@ -201,7 +193,13 @@ class NestedTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildrenQueryBuilder
+     * @param object|null $node        if null, all tree nodes will be taken
+     * @param bool        $direct      true to take only direct children
+     * @param string      $sortByField field name to sort by
+     * @param string      $direction   sort direction : "ASC" or "DESC"
+     * @param bool        $includeNode Include the root node in results?
+     *
+     * @return QueryBuilder QueryBuilder object
      */
     public function childrenQueryBuilder($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -267,7 +265,13 @@ class NestedTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildrenQuery
+     * @param object|null $node        if null, all tree nodes will be taken
+     * @param bool        $direct      true to take only direct children
+     * @param string      $sortByField field name to sort by
+     * @param string      $direction   sort direction : "ASC" or "DESC"
+     * @param bool        $includeNode Include the root node in results?
+     *
+     * @return Query Query object
      */
     public function childrenQuery($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -275,7 +279,13 @@ class NestedTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildren
+     * @param object|null          $node        The object to fetch children for; if null, all nodes will be retrieved
+     * @param bool                 $direct      Flag indicating whether only direct children should be retrieved
+     * @param string|string[]|null $sortByField Field name(s) to sort by
+     * @param string               $direction   Sort direction : "ASC" or "DESC"
+     * @param bool                 $includeNode Flag indicating whether the given node should be included in the results
+     *
+     * @return array|null List of children or null on failure
      */
     public function children($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -285,24 +295,24 @@ class NestedTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * {@inheritdoc}
+     * @param object|null $node        if null, all tree nodes will be taken
+     * @param bool        $direct      true to take only direct children
+     * @param string      $sortByField field name to sort by
+     * @param string      $direction   sort direction : "ASC" or "DESC"
+     * @param bool        $includeNode Include the root node in results?
+     *
+     * @return QueryBuilder Query object
      */
     public function getChildrenQueryBuilder($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->childrenQueryBuilder($node, $direct, $sortByField, $direction, $includeNode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildrenQuery($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->childrenQuery($node, $direct, $sortByField, $direction, $includeNode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildren($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->children($node, $direct, $sortByField, $direction, $includeNode);
@@ -317,7 +327,7 @@ class NestedTreeRepository extends AbstractTreeRepository
      *
      * @throws InvalidArgumentException if input is not valid
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getLeafsQueryBuilder($root = null, $sortByField = null, $direction = 'ASC')
     {
@@ -400,7 +410,7 @@ class NestedTreeRepository extends AbstractTreeRepository
      *
      * @throws \Gedmo\Exception\InvalidArgumentException if input is invalid
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getNextSiblingsQueryBuilder($node, $includeSelf = false)
     {
@@ -477,7 +487,7 @@ class NestedTreeRepository extends AbstractTreeRepository
      *
      * @throws \Gedmo\Exception\InvalidArgumentException if input is invalid
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getPrevSiblingsQueryBuilder($node, $includeSelf = false)
     {
@@ -626,6 +636,8 @@ class NestedTreeRepository extends AbstractTreeRepository
      * @param object $node
      *
      * @throws \RuntimeException if something fails in transaction
+     *
+     * @return void
      */
     public function removeFromTree($node)
     {
@@ -777,6 +789,8 @@ class NestedTreeRepository extends AbstractTreeRepository
      * @param string $sortByField field name to sort by
      * @param string $direction   sort direction : "ASC" or "DESC"
      * @param bool   $verify      true to verify tree first
+     *
+     * @return void
      */
     public function reorderAll($sortByField = null, $direction = 'ASC', $verify = true)
     {
@@ -858,9 +872,6 @@ class NestedTreeRepository extends AbstractTreeRepository
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchyQueryBuilder($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         $meta = $this->getClassMetadata();
@@ -875,25 +886,16 @@ class NestedTreeRepository extends AbstractTreeRepository
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchyQuery($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         return $this->getNodesHierarchyQueryBuilder($node, $direct, $options, $includeNode)->getQuery();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchy($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         return $this->getNodesHierarchyQuery($node, $direct, $options, $includeNode)->getArrayResult();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function validate()
     {
         return Strategy::NESTED === $this->listener->getStrategy($this->_em, $this->getClassMetadata()->name)->getName();

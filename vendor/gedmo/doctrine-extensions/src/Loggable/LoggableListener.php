@@ -10,6 +10,7 @@
 namespace Gedmo\Loggable;
 
 use Doctrine\Common\EventArgs;
+use Doctrine\Persistence\Event\LoadClassMetadataEventArgs;
 use Gedmo\Loggable\Mapping\Event\LoggableAdapter;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
@@ -69,6 +70,8 @@ class LoggableListener extends MappedEventSubscriber
      * @param mixed $username
      *
      * @throws \Gedmo\Exception\InvalidArgumentException Invalid username
+     *
+     * @return void
      */
     public function setUsername($username)
     {
@@ -97,6 +100,8 @@ class LoggableListener extends MappedEventSubscriber
 
     /**
      * Maps additional metadata
+     *
+     * @param LoadClassMetadataEventArgs $eventArgs
      *
      * @return void
      */
@@ -194,14 +199,13 @@ class LoggableListener extends MappedEventSubscriber
      *
      * @param object $logEntry The LogEntry being persisted
      * @param object $object   The object being Logged
+     *
+     * @return void
      */
     protected function prePersistLogEntry($logEntry, $object)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getNamespace()
     {
         return __NAMESPACE__;

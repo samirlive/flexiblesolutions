@@ -1,3 +1,0 @@
-# PolyfillSymfonyFrameworkBundle
-
-Symfony FrameworkBundle Polyfill

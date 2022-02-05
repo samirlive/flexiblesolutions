@@ -1,0 +1,101 @@
+{% extends '@Flexy/FrontBundle/templates/layout.html.twig' %}
+
+{% block body %}
+
+
+
+        <!-- Begin Body Wrapper -->
+        <div class="body-wrapper">
+  
+            <!-- Begin Li's Breadcrumb Area -->
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Se connecter Créer un compte</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!-- Begin Se connecter Content Area -->
+            <div class="page-section mb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-5 mb-30">
+                            <!-- Se connecter Form s-->
+                            <form action="#" >
+                                <div class="login-form">
+                                    <h4 class="login-title">Se connecter</h4>
+                                    <div class="row">
+                                        <div class="col-md-12 col-12 mb-20">
+                                            <label>Email*</label>
+                                            <input class="mb-0" type="email" placeholder="Email">
+                                        </div>
+                                        <div class="col-12 mb-20">
+                                            <label>Mot de passe</label>
+                                            <input class="mb-0" type="password" placeholder="Mot de passe">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+                                                <input type="checkbox" id="remember_me">
+                                                <label for="remember_me">Se souvenir de moi</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+                                            <a href="#"> Mot de pass oublié?</a>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button class="register-button mt-0">Se connecter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-7 col-xs-12">
+                            <div class="card p-4">
+                            <h4 class="login-title">Créer un compte</h4>
+
+                            {{ form_start(registrationForm) }}
+
+                            <div class="row">
+                                <div class="col-6" >{{ form_row(registrationForm.name) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.fullName) }}</div>
+                                <div class="col-12" >{{ form_row(registrationForm.address) }}</div>
+                                <div class="col-12" >{{ form_row(registrationForm.email) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.city) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.tel) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.ICE) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.RC) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.simulateUsername) }}</div>
+                                <div class="col-6" >{{ form_row(registrationForm.simulatePassword) }}</div>
+                                <div class="col-12" >{{ form_row(registrationForm.agreeTerms) }}</div>
+                                
+                            </div>
+
+                            {#
+                                {{ form_row(registrationForm.username) }}
+                                {{ form_row(registrationForm.plainPassword, {
+                                    label: 'Password'
+                                }) }}
+                                {{ form_row(registrationForm.agreeTerms) }}
+                            #}
+                                   </br>
+                                <button  type="submit" class="register-button mt-0">Créer</button>
+                            {{ form_end(registrationForm) }}
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Se connecter Content Area End Here -->
+
+        </div>
+        <!-- Body Wrapper End Here -->
+
+{% endblock %}
+
+

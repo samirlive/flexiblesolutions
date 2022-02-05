@@ -11,6 +11,7 @@ namespace Gedmo\SoftDeleteable;
 
 use Doctrine\Common\EventArgs;
 use Doctrine\ODM\MongoDB\UnitOfWork as MongoDBUnitOfWork;
+use Doctrine\Persistence\Event\LoadClassMetadataEventArgs;
 use Gedmo\Mapping\MappedEventSubscriber;
 
 /**
@@ -102,6 +103,8 @@ class SoftDeleteableListener extends MappedEventSubscriber
     /**
      * Maps additional metadata
      *
+     * @param LoadClassMetadataEventArgs $eventArgs
+     *
      * @return void
      */
     public function loadClassMetadata(EventArgs $eventArgs)
@@ -110,9 +113,6 @@ class SoftDeleteableListener extends MappedEventSubscriber
         $this->loadMetadataForObjectClass($ea->getObjectManager(), $eventArgs->getClassMetadata());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getNamespace()
     {
         return __NAMESPACE__;

@@ -1,4 +1,0 @@
-suites:
-    main:
-        namespace: BitBag\SyliusCmsPlugin
-        psr4_prefix: BitBag\SyliusCmsPlugin

@@ -10,6 +10,7 @@
 namespace Gedmo\Tree\Entity\Repository;
 
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Gedmo\Exception\InvalidArgumentException;
 use Gedmo\Tool\Wrapper\EntityWrapper;
 use Gedmo\Tree\Entity\MappedSuperclass\AbstractClosure;
@@ -28,9 +29,6 @@ class ClosureTreeRepository extends AbstractTreeRepository
     /** Alias for the level value used in the subquery of the getNodesHierarchy method */
     public const SUBQUERY_LEVEL = 'level';
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodesQueryBuilder($sortByField = null, $direction = 'asc')
     {
         $meta = $this->getClassMetadata();
@@ -47,17 +45,11 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $qb;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodesQuery($sortByField = null, $direction = 'asc')
     {
         return $this->getRootNodesQueryBuilder($sortByField, $direction)->getQuery();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRootNodes($sortByField = null, $direction = 'asc')
     {
         return $this->getRootNodesQuery($sortByField, $direction)->getResult();
@@ -109,7 +101,13 @@ class ClosureTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildrenQueryBuilder
+     * @param object|null $node        if null, all tree nodes will be taken
+     * @param bool        $direct      true to take only direct children
+     * @param string      $sortByField field name to sort by
+     * @param string      $direction   sort direction : "ASC" or "DESC"
+     * @param bool        $includeNode Include the root node in results?
+     *
+     * @return QueryBuilder QueryBuilder object
      */
     public function childrenQueryBuilder($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -167,7 +165,13 @@ class ClosureTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildrenQuery
+     * @param object|null $node        if null, all tree nodes will be taken
+     * @param bool        $direct      true to take only direct children
+     * @param string      $sortByField field name to sort by
+     * @param string      $direction   sort direction : "ASC" or "DESC"
+     * @param bool        $includeNode Include the root node in results?
+     *
+     * @return Query Query object
      */
     public function childrenQuery($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -175,7 +179,13 @@ class ClosureTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @see getChildren
+     * @param object|null          $node        The object to fetch children for; if null, all nodes will be retrieved
+     * @param bool                 $direct      Flag indicating whether only direct children should be retrieved
+     * @param string|string[]|null $sortByField Field name(s) to sort by
+     * @param string               $direction   Sort direction : "ASC" or "DESC"
+     * @param bool                 $includeNode Flag indicating whether the given node should be included in the results
+     *
+     * @return array|null List of children or null on failure
      */
     public function children($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
@@ -189,25 +199,16 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $result;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildrenQueryBuilder($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->childrenQueryBuilder($node, $direct, $sortByField, $direction, $includeNode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildrenQuery($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->childrenQuery($node, $direct, $sortByField, $direction, $includeNode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildren($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
         return $this->children($node, $direct, $sortByField, $direction, $includeNode);
@@ -222,6 +223,8 @@ class ClosureTreeRepository extends AbstractTreeRepository
      *
      * @throws \Gedmo\Exception\InvalidArgumentException
      * @throws \Gedmo\Exception\RuntimeException         if something fails in transaction
+     *
+     * @return void
      */
     public function removeFromTree($node)
     {
@@ -334,25 +337,16 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $nestedTree;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchy($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         return $this->getNodesHierarchyQuery($node, $direct, $options, $includeNode)->getArrayResult();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchyQuery($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         return $this->getNodesHierarchyQueryBuilder($node, $direct, $options, $includeNode)->getQuery();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodesHierarchyQueryBuilder($node = null, $direct = false, array $options = [], $includeNode = false)
     {
         $meta = $this->getClassMetadata();
@@ -398,6 +392,9 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $q;
     }
 
+    /**
+     * @return array|bool
+     */
     public function verify()
     {
         $nodeMeta = $this->getClassMetadata();
@@ -460,6 +457,9 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $errors ?: true;
     }
 
+    /**
+     * @return void
+     */
     public function recover()
     {
         if (true === $this->verify()) {
@@ -470,6 +470,9 @@ class ClosureTreeRepository extends AbstractTreeRepository
         $this->rebuildClosure();
     }
 
+    /**
+     * @return int
+     */
     public function rebuildClosure()
     {
         $nodeMeta = $this->getClassMetadata();
@@ -524,6 +527,9 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $newClosuresCount;
     }
 
+    /**
+     * @return int
+     */
     public function cleanUpClosure()
     {
         $conn = $this->_em->getConnection();
@@ -559,6 +565,9 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $deletedClosuresCount;
     }
 
+    /**
+     * @return int
+     */
     public function updateLevelValues()
     {
         $nodeMeta = $this->getClassMetadata();
@@ -595,14 +604,16 @@ class ClosureTreeRepository extends AbstractTreeRepository
         return $levelUpdatesCount;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function validate()
     {
         return Strategy::CLOSURE === $this->listener->getStrategy($this->_em, $this->getClassMetadata()->name)->getName();
     }
 
+    /**
+     * @param array $association
+     *
+     * @return string|null
+     */
     protected function getJoinColumnFieldName($association)
     {
         if (count($association['joinColumnFieldNames']) > 1) {

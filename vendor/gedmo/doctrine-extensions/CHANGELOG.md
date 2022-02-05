@@ -20,6 +20,46 @@ a release.
 
 ## [Unreleased]
 
+## [3.5.0] - 2022-01-10
+### Added
+- SoftDeleteable: Support to use annotations as attributes on PHP >= 8.0.
+- Blameable: Support to use annotations as attributes on PHP >= 8.0.
+- IpTraceable: Support to use annotations as attributes on PHP >= 8.0.
+- Sortable: Support to use annotations as attributes on PHP >= 8.0.
+- Sluggable: Support to use annotations as attributes on PHP >= 8.0.
+- Uploadable: Support to use annotations as attributes on PHP >= 8.0.
+- Tree: Support to use annotations as attributes on PHP >= 8.0.
+- References: Support to use annotations as attributes on PHP >= 8.0.
+- ReferenceIntegrity: Support to use annotations as attributes on PHP >= 8.0.
+- SoftDeleteable: Support for custom column types (like Carbon).
+- Timestampable: Support for custom column types (like Carbon).
+- Translatable: Added an index to `Translation` entity to speed up searches using 
+  `Gedmo\Translatable\Entity\Repository\TranslationRepository::findTranslations()` method. 
+- `Gedmo\Mapping\Event\AdapterInterface::getObject()` method.
+
+### Fixed
+- Blameable, IpTraceable, Timestampable: Type handling for the tracked field values configured in the origin field.
+- Loggable: Using only PHP 8 attributes.
+- References: Avoid deprecations using LazyCollection with PHP 8.1
+- Tree: Association mapping problems using Closure tree strategy (by manually defining mapping on the closure entity).
+- Wrong PHPDoc type declarations.
+- Avoid calling deprecated `AbstractClassMetadataFactory::getCacheDriver()` method.
+- Avoid deprecations using `doctrine/mongodb-odm` >= 2.2
+- Translatable: `Gedmo\Translatable\Document\Repository\TranslationRepository::findObjectByTranslatedField()`
+  method accessing a non-existing key.
+
+### Deprecated
+- Tree: When using Closure tree strategy, it is deprecated not defining the mapping associations of the closure entity.
+- `Gedmo\Tool\Logging\DBAL\QueryAnalizer` class without replacement.
+- Using YAML mapping is deprecated, you SHOULD migrate to attributes, annotations or XML.
+- `Gedmo\Mapping\Event\AdapterInterface::__call()` method.
+- `Gedmo\Tool\Wrapper\AbstractWrapper::clear()` method.
+- `Gedmo\Tool\Wrapper\WrapperInterface::populate()` method.
+
+### Changed
+- In order to use a custom cache for storing configuration of an extension, the user has to call `setCacheItemPool()`
+  on the extension listener passing an instance of `Psr\Cache\CacheItemPoolInterface`.
+
 ## [3.4.0] - 2021-12-05
 ### Added
 - PHP 8 Attributes support for Doctrine MongoDB to document & traits.

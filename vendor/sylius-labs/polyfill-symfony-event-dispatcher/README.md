@@ -1,3 +1,0 @@
-# PolyfillSymfonyEventDispatcher
-
-Symfony EventDispatcher Polyfill

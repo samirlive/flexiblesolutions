@@ -11,7 +11,7 @@
 
 namespace Symfony\Flex;
 
-use Composer\Cache as ComposerCache;
+use Composer\Cache;
 use Composer\Composer;
 use Composer\DependencyResolver\Operation\OperationInterface;
 use Composer\DependencyResolver\Operation\UninstallOperation;
@@ -41,8 +41,7 @@ class Downloader
     private $sess;
     private $cache;
 
-    /** @var HttpDownloader|ParallelDownloader */
-    private $rfs;
+    private HttpDownloader $rfs;
     private $degradedMode = false;
     private $endpoints;
     private $index;
@@ -50,7 +49,7 @@ class Downloader
     private $caFile;
     private $enabled = true;
 
-    public function __construct(Composer $composer, IoInterface $io, $rfs)
+    public function __construct(Composer $composer, IoInterface $io, HttpDownloader $rfs)
     {
         if (getenv('SYMFONY_CAFILE')) {
             $this->caFile = getenv('SYMFONY_CAFILE');
@@ -89,18 +88,13 @@ class Downloader
         $this->io = $io;
         $config = $composer->getConfig();
         $this->rfs = $rfs;
-        $this->cache = new ComposerCache($io, $config->get('cache-repo-dir').'/flex');
+        $this->cache = new Cache($io, $config->get('cache-repo-dir').'/flex');
         $this->sess = bin2hex(random_bytes(16));
     }
 
     public function getSessionId(): string
     {
         return $this->sess;
-    }
-
-    public function setFlexId(string $id = null)
-    {
-        // No-op to support downgrading to v1.12.x
     }
 
     public function isEnabled()
@@ -139,6 +133,7 @@ class Downloader
         $data = [];
         $urls = [];
         $chunk = '';
+        $recipeRef = null;
         foreach ($operations as $operation) {
             $o = 'i';
             if ($operation instanceof UpdateOperation) {
@@ -149,9 +144,16 @@ class Downloader
                 if ($operation instanceof UninstallOperation) {
                     $o = 'r';
                 }
+
+                if ($operation instanceof InformationOperation) {
+                    $recipeRef = $operation->getRecipeRef();
+                }
             }
 
             $version = $package->getPrettyVersion();
+            if ($operation instanceof InformationOperation && $operation->getVersion()) {
+                $version = $operation->getVersion();
+            }
             if (0 === strpos($version, 'dev-') && isset($package->getExtra()['branch-alias'])) {
                 $branchAliases = $package->getExtra()['branch-alias'];
                 if (
@@ -179,6 +181,16 @@ class Downloader
                     if (version_compare($version, $v, '>=')) {
                         $data['locks'][$package->getName()]['version'] = $version;
                         $data['locks'][$package->getName()]['recipe']['version'] = $v;
+
+                        if (null !== $recipeRef && isset($this->endpoints[$endpoint]['_links']['archived_recipes_template'])) {
+                            $urls[] = strtr($this->endpoints[$endpoint]['_links']['archived_recipes_template'], [
+                                '{package_dotted}' => str_replace('/', '.', $package->getName()),
+                                '{ref}' => $recipeRef,
+                            ]);
+
+                            break;
+                        }
+
                         $urls[] = strtr($this->endpoints[$endpoint]['_links']['recipe_template'], [
                             '{package_dotted}' => str_replace('/', '.', $package->getName()),
                             '{package}' => $package->getName(),
@@ -294,37 +306,19 @@ class Downloader
             $options[$url] = $this->getOptions($headers);
         }
 
-        if ($this->rfs instanceof HttpDownloader) {
-            $loop = new Loop($this->rfs);
-            $jobs = [];
-            foreach ($urls as $url) {
-                $jobs[] = $this->rfs->add($url, $options[$url])->then(function (ComposerResponse $response) use ($url, &$responses) {
-                    if (200 === $response->getStatusCode()) {
-                        $cacheKey = self::generateCacheKey($url);
-                        $responses[$url] = $this->parseJson($response->getBody(), $url, $cacheKey, $response->getHeaders())->getBody();
-                    }
-                }, function (\Exception $e) use ($url, &$retries) {
-                    $retries[] = [$url, $e];
-                });
-            }
-            $loop->wait($jobs);
-        } else {
-            foreach ($urls as $i => $url) {
-                $urls[$i] = [$url];
-            }
-            $this->rfs->download($urls, function ($url) use ($options, &$responses, &$retries, &$error) {
-                try {
+        $loop = new Loop($this->rfs);
+        $jobs = [];
+        foreach ($urls as $url) {
+            $jobs[] = $this->rfs->add($url, $options[$url])->then(function (ComposerResponse $response) use ($url, &$responses) {
+                if (200 === $response->getStatusCode()) {
                     $cacheKey = self::generateCacheKey($url);
-                    $origin = method_exists($this->rfs, 'getOrigin') ? $this->rfs::getOrigin($url) : parse_url($url, \PHP_URL_HOST);
-                    $json = $this->rfs->getContents($origin, $url, false, $options[$url]);
-                    if (200 === $this->rfs->findStatusCode($this->rfs->getLastHeaders())) {
-                        $responses[$url] = $this->parseJson($json, $url, $cacheKey, $this->rfs->getLastHeaders())->getBody();
-                    }
-                } catch (\Exception $e) {
-                    $retries[] = [$url, $e];
+                    $responses[$url] = $this->parseJson($response->getBody(), $url, $cacheKey, $response->getHeaders())->getBody();
                 }
+            }, function (\Exception $e) use ($url, &$retries) {
+                $retries[] = [$url, $e];
             });
         }
+        $loop->wait($jobs);
 
         if (!$retries) {
             return $responses;
@@ -418,6 +412,9 @@ class Downloader
         $url = preg_replace('{^https://api.github.com/repos/([^/]++/[^/]++)/contents/}', '$1/', $url);
         $url = preg_replace('{^https://raw.githubusercontent.com/([^/]++/[^/]++)/}', '$1/', $url);
 
-        return preg_replace('{[^a-z0-9.]}i', '-', $url);
+        $key = preg_replace('{[^a-z0-9.]}i', '-', $url);
+
+        // eCryptfs can have problems with filenames longer than around 143 chars
+        return \strlen($key) > 140 ? md5($url) : $key;
     }
 }

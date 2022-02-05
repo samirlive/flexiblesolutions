@@ -1,0 +1,282 @@
+        <!-- jQuery-V1.12.4 -->
+        <script src="{{asset('bundles/flexyfront/assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+        <!-- Popper js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/vendor/popper.min.js')}}"></script>
+        <!-- Bootstrap V4.1.3 Fremwork js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/bootstrap.min.js')}}"></script>
+        <!-- Ajax Mail js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/ajax-mail.js')}}"></script>
+        <!-- Meanmenu js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.meanmenu.min.js')}}"></script>
+        <!-- Wow.min js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/wow.min.js')}}"></script>
+        <!-- Slick Carousel js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/slick.min.js')}}"></script>
+        <!-- Owl Carousel-2 js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/owl.carousel.min.js')}}"></script>
+        <!-- Magnific popup js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.magnific-popup.min.js')}}"></script>
+        <!-- Isotope js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/isotope.pkgd.min.js')}}"></script>
+        <!-- Imagesloaded js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/imagesloaded.pkgd.min.js')}}"></script>
+        <!-- Mixitup js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.mixitup.min.js')}}"></script>
+        <!-- Countdown -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.countdown.min.js')}}"></script>
+        <!-- Counterup -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.counterup.min.js')}}"></script>
+        <!-- Waypoints -->
+        <script src="{{asset('bundles/flexyfront/assets/js/waypoints.min.js')}}"></script>
+        <!-- Barrating -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.barrating.min.js')}}"></script>
+        <!-- Jquery-ui -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery-ui.min.js')}}"></script>
+        <!-- Venobox -->
+        <script src="{{asset('bundles/flexyfront/assets/js/venobox.min.js')}}"></script>
+        <!-- Nice Select js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/jquery.nice-select.min.js')}}"></script>
+        <!-- ScrollUp js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/scrollUp.min.js')}}"></script>
+
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+        <!-- LocalStorage cart -->
+
+        <script src="{{asset('flexy/js/cart-localstorage.js')}}" defer></script>
+        <!-- Main/Activator js -->
+        <script src="{{asset('bundles/flexyfront/assets/js/main.js')}}"></script>
+
+
+
+
+        <script>
+            $(document).ready(function(){
+
+                            $.extend($.validator.messages, {
+                                required: "Ce champs est obligatoire",
+                            });
+                           
+
+
+
+
+
+                $("a").not(".menu-item a,.li-product-menu a").attr("href","#");// Disable Links temporary
+
+
+
+                $(".menu_level_1").hide();
+                $(".menu-item").hover(function(){
+                    $(this).find(".menu_level_1").show();
+                },
+                function(){
+                    $(this).find(".menu_level_1").hide();
+                });
+
+            });
+        </script>
+
+
+
+
+
+<script>
+
+
+$(document).ready(function(){
+function renderCart(items) {
+
+
+      const $cart = document.querySelector(".cart")
+  const $total = document.querySelector(".total")
+
+
+        const $cartCheckout = document.querySelector(".cart-checkout")
+        const $totalCheckout = document.querySelector(" .total-checkout")
+
+
+                                            
+
+    const $miniCart = document.querySelector(".minicart-product-list");
+    const $miniCartTotal = document.querySelector(".minicart-total span");
+    const $singleProductArea = document.querySelector(".single-product-area");
+
+        
+        
+            var prefixUrl = "{{urlSite}}";
+
+  $miniCart.innerHTML = items.map((item) => `
+
+
+                                                        <li data-id="${item.id}">
+                                                        <a href="${item.url}" class="minicart-product-image">
+                                                            <img src="`+prefixUrl+`${item.image}" alt="cart products">
+                                                        </a>
+                                                        <div class="minicart-product-details">
+                                                            <h6><a href="#">${item.name}</a></h6>
+                                                            <span> ${item.quantity} x ${item.price} MAD</span>
+                                                        </div>
+                                                        <button data-id="${item.id}" class="close delete-product-from-cart " title="Remove">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </li>
+`).join("");
+
+  $miniCartTotal.innerHTML =  cartLS.total() + "MAD";
+
+
+/*
+
+  const $cart = document.querySelector(".cart")
+  const $total = document.querySelector(".total")
+
+  $cart.innerHTML = items.map((item) => `
+      <tr data-id="${item.id}">
+        <td>${item.name}</td>
+        <td style="width: 60px;"> 
+          <button data-id="${item.id}" type="button" class="btn   btn-block btn-sm  decrease-quantite-to-cart"
+            ><i class="fas fa-minus"></i></button>
+        </td>
+        <td style="width: 60px;"> 
+          <button data-id="${item.id}" type="button" class="btn   btn-block btn-sm  increase-quantite-to-cart"
+            ><i class="fas fa-plus"></i></button>
+        </td>
+        <td style="white-space:nowrap;" class="text-right">${item.quantity} x ${item.price} MAD</td>
+        <td  class="text-right">${item.price * item.quantity}  MAD</td>
+        <td class="text-right"><Button data-id="${item.id}" class="btn btn-danger  delete-product-from-cart" ><i class="fas fa-trash-alt"></i></Button></td>
+      </tr>`).join("");
+
+  $total.innerHTML =  cartLS.total() + "MAD";
+
+
+*/
+
+
+
+if($cart){
+ $cart.innerHTML = items.map((item) => `
+                                            <tr data-id="${item.id}" >
+                                                <td data-id="${item.id}" class="li-product-remove delete-product-from-cart"><a onclick="return false;" href="#"><i class="fa fa-times"></i></a></td>
+                                                <td class="li-product-thumbnail"><a href="#"><img height="50" src="../../${item.image}" alt="${item.name}"></a></td>
+                                                <td class="li-product-name"><a href="#">${item.name}</a></td>
+                                                <td class="li-product-price"><span class="amount">MAD ${item.price}</span></td>
+                                                <td class="quantity">
+                                                    <label>Quantity</label>
+                                                    <div class="cart-plus-minus">
+                                                        <input class="cart-plus-minus-box" value="${item.quantity}" type="text">
+                                                        <div data-id="${item.id}" class="dec qtybutton decrease-quantite-to-cart"><i class="fa fa-angle-down"></i></div>
+                                                        <div data-id="${item.id}" class="inc qtybutton increase-quantite-to-cart"><i class="fa fa-angle-up"></i></div>
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal"><span class="amount">MAD ${item.price * item.quantity}</span></td>
+                                            </tr>
+`).join("");
+$total.innerHTML =  cartLS.total() + "MAD";
+
+
+}
+
+
+if($cartCheckout){
+ $cartCheckout.innerHTML = items.map((item) => `
+                                              <tr class="cart_item">
+                                              <td class="cart-product-name"> ${item.name}<strong class="product-quantity"> × ${item.quantity}</strong></td>
+                                              <td class="cart-product-total"><span class="amount">${item.price * item.quantity} MAD</span></td>  
+                                            </tr>
+`).join("");
+$totalCheckout.innerHTML =  cartLS.total() + "MAD";
+
+
+}
+
+
+
+ $(".hm-minicart-trigger .item-text span").text(cartLS.total() + " MAD");
+ $(".total-checkout").text(cartLS.total() + " MAD");
+$(".hm-minicart .cart-item-count").text(cartLS.list().length);
+  
+
+                                            
+
+
+}
+renderCart(cartLS.list());
+
+
+cartLS.onChange(renderCart);
+
+
+$(".add-product-to-cart").click(function(){
+
+var id = $(this).attr("data-id");
+var name = $(this).attr("data-name");
+var price = $(this).attr("data-price");
+var image = $(this).attr("data-image");
+var url = $(this).attr("data-url");
+
+cartLS.add({
+  id: id, 
+  image:image,
+  name: name, 
+  price: price,
+  client:{
+      name:"Adil",
+      type:"Client Fidele",
+  }
+});
+cartLS.onChange(renderCart);
+console.log(cartLS.list());
+});
+
+
+
+$(".cart, .minicart-product-list,.Shopping-cart-area").on("click",".increase-quantite-to-cart",function(){
+
+    var id = $(this).attr("data-id");
+
+    cartLS.quantity(id, 1);
+    cartLS.onChange(renderCart);
+});
+
+$(".cart,.minicart-product-list,.Shopping-cart-area").on("click",".decrease-quantite-to-cart",function(){
+
+    var id = $(this).attr("data-id");
+    cartLS.quantity(id, -1);
+    cartLS.onChange(renderCart);
+   
+});
+
+$(".cart, .minicart-product-list,.Shopping-cart-area").on("click",".delete-product-from-cart",function(){
+
+    var id = $(this).attr("data-id");
+
+    cartLS.remove(id);
+    cartLS.onChange(renderCart);
+
+    if(cartLS.list().length == 0){
+        $(".checkout-area").html($(".cart-is-empty").html());
+    }
+});
+
+$(".destroy-cart").click(function(){
+    cartLS.destroy();
+});
+
+$("#cash").keyup(function(){
+    var total = cartLS.total();
+    var cash = $(this).val();
+    var difference = cash-total;
+    $(".difference-cash").html(difference+ " MAD");
+});
+
+
+
+
+});
+
+
+
+
+</script>

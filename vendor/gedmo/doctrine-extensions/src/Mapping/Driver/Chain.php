@@ -37,6 +37,8 @@ class Chain implements Driver
      * Add a nested driver.
      *
      * @param string $namespace
+     *
+     * @return void
      */
     public function addDriver(Driver $nestedDriver, $namespace)
     {
@@ -65,15 +67,14 @@ class Chain implements Driver
 
     /**
      * Set the default driver.
+     *
+     * @return void
      */
     public function setDefaultDriver(Driver $driver)
     {
         $this->defaultDriver = $driver;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function readExtendedMetadata($meta, array &$config)
     {
         foreach ($this->_drivers as $namespace => $driver) {

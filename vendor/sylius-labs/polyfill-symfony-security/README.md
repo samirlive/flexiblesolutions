@@ -1,3 +1,0 @@
-# PolyfillSymfonySecurity
-
-Symfony Security Polyfill
