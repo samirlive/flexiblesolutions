@@ -41,6 +41,8 @@ class HomeController extends AbstractController
     #[Route('/contact', name: 'contact')]
     public function contact(ProductRepository $productRepository): Response
     {
+        
+
         return $this->render('@Flexy\FrontBundle/templates/home/contact.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
