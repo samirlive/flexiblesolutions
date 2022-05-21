@@ -27065,25 +27065,25 @@ section.shadow {
 
 .pricing-plan .pricing-value .price:after,
 .pricing-plan .pricing-value .price:before {
-	font-size: .35em;
+	font-size: .25em;
 	font-weight: 300;
 	font-style: italic
 }
 
 .pricing-plan .pricing-value .price:before {
 	position: absolute;
-	content: '$';
+	content: 'DH';
 	top: 10px;
 	left: -15px
 }
 
 .pricing-plan .pricing-value .price:after {
 	position: relative;
-	content: '/mo'
+	content: '/Mois'
 }
 
 .pricing-plan .pricing-value .price.yearly:after {
-	content: '/yr'
+	content: '/An'
 }
 
 @media (min-width:992px) {
