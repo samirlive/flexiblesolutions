@@ -27,8 +27,6 @@ class HomeController extends AbstractController
 
         $deals = $productRepository->findDeals();
 
-        return $this->render('@Flexy\FrontBundle/templates/pages/comingsoon.html.twig');
-
         return $this->render('@Flexy\FrontBundle/templates/home/index.html.twig', [
             'products' => $productRepository->findAll(),
             'masterSliders'=> $masterSliderRepository->findBy(["isEnabled"=>true]),

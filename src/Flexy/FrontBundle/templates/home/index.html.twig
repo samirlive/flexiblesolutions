@@ -2,82 +2,170 @@
 
 {% block body %}
 
-    <main>
-         <!-- Alternative 2 Heading -->
-         <header class="header alter2-header section" id="home">
+
+<!doctype html>
+
+      <main class="overflow-hidden position-relative">
+         <!-- Alternative 3 Heading -->
+         <header class="header alter3-header section gradient gradient-primary-auxiliary text-contrast" id="home">
             <div class="shapes-container">
-               <!-- diagonal shapes -->
-               <div class="shape shape-animated" data-aos="fade-down-right" data-aos-duration="1500" data-aos-delay="100"></div>
-               <div class="shape shape-animated" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
-               <div class="shape shape-animated" data-aos="fade-up-left" data-aos-duration="500" data-aos-delay="200"></div>
-               <div class="shape shape-animated" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200"></div>
-               <div class="shape shape-animated" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
-               <div class="shape shape-animated" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
-               <div class="shape shape-animated" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
-               <div class="shape shape-animated" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
-               <div class="shape shape-animated" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
-               <!-- animated shapes -->
-               <div class="animation-shape shape-ring animation--clockwise"></div>
-               <div class="animation-shape shape-circle shape-circle-1 animation--anti-clockwise"></div>
-               <div class="animation-shape shape-circle shape-circle-2 animation--clockwise"></div>
-               <div class="animation-shape shape-heart animation--clockwise">
-                  <div class="animation--rotating"></div>
+               <div class="animation-shape shape-ring animation--rotating-diagonal">
+                  <div></div>
                </div>
-               <div class="animation-shape shape-triangle animation--rotating-diagonal">
+               <div class="animation-shape shape-circle animation--clockwise">
+                  <div></div>
+               </div>
+               <div class="animation-shape shape-triangle animation--anti-clockwise">
                   <div class="animation--rotating"></div>
                </div>
                <div class="animation-shape shape-diamond animation--anti-clockwise">
                   <div class="animation--rotating"></div>
                </div>
-               <!-- static shapes -->
                <div class="static-shape shape-ring-1"></div>
                <div class="static-shape shape-ring-2"></div>
-               <div class="static-shape shape-circle shape-circle-1">
-                  <div data-aos="fade-down-left"></div>
-               </div>
-               <div class="static-shape shape-circle shape-circle-2">
-                  <div data-aos="fade-down-left" data-aos-delay="500"></div>
-               </div>
+               <div class="static-shape shape-circle-1"></div>
                <div class="static-shape pattern-dots-1"></div>
                <div class="static-shape pattern-dots-2"></div>
-               <!-- main shape -->
-               <div class="static-shape background-shape-main"></div>
-               <!-- ghost shapes -->
                <div class="static-shape ghost-shape ghost-shape-1"></div>
             </div>
-            <div class="container">
+            <div class="container bring-to-front">
                <div class="row">
                   <div class="col-md-6">
-                     <span class="rounded-pill shadow-box bg-contrast text-dark bold py-2 px-4"><i class="far fa-lightbulb text-primary mr-2"></i> <span class="text-primary">Awesome</span> Landing Page</span>
-                     <h1 class="display-4 display-md-2 mt-3"><span class="bold">Laapp</span></h1>
-                     <p class="lead bold text-primary">Premium Startup & <span class="head-line-2">App Landing Page</span></p>
-                     <p class="lead">Besides its beautiful design. Laapp is an incredibly rich core framework for you to showcase your App.</p>
-                     <nav class="nav my-5"><a href="#!" class="btn btn-rounded btn-alternate mr-2 mr-md-5">Know more <i class="fas fa-long-arrow-alt-right ml-2"></i></a> <a href="#demos" class="btn btn-rounded btn-outline-alternate scrollto">Free trial</a></nav>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="iphone front mx-auto">
-                        <div class="screen shadow-box"><img src="{{asset('bundles/flexyfront/assets/img/screens/app/3.png')}}" alt="..."></div>
-                        <div class="notch"></div>
-                     </div>
+                     <h1 class="extra-bold display-md-3 font-md">A new way<span class="d-block display-md-4 light">to showcase your app</span></h1>
+                     <p class="lead">Your amazing product deserves an outstanding way to show it. Dashcore will provide you with a quality template no matter what your idea is about.</p>
+                     <nav class="nav mt-5"><a href="#" class="nav-link mr-3 btn btn btn-rounded btn-contrast"><i class="fas fa-tag mr-3"></i> Plans & pricing </a><a href="#" class="nav-link btn btn-rounded btn-outline-contrast">Start now</a></nav>
                   </div>
                </div>
             </div>
          </header>
-         <!-- Partners Slider -->
-         <section class="section">
-            <div class="container py-5 border-bottom">
-               <div class="swiper-container" data-sw-show-items="5" data-sw-space-between="30" data-sw-autoplay="2500" data-sw-loop="true">
-                  <div class="swiper-wrapper align-items-center">
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/1.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/2.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/3.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/4.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/5.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
-                     <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/6.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+         <!-- Isometric Mockups -->
+         <section class="isometric-mockups">
+            <div class="tablet ipad landscape">
+               <div class="screen"><img src="{{asset('bundles/flexyfront/assets/img/screens/tablet/1.png')}}" alt="..."></div>
+               <div class="button"></div>
+            </div>
+            <div class="iphone light phone-big">
+               <div class="screen"><img src="{{asset('bundles/flexyfront/assets/img/screens/app/4.png')}}" alt="..."></div>
+               <div class="notch"></div>
+            </div>
+            <div class="iphone light phone-small">
+               <div class="screen"><img src="{{asset('bundles/flexyfront/assets/img/screens/app/2.png')}}" alt="..."></div>
+               <div class="notch"></div>
+            </div>
+            <div class="tablet ipad portrait">
+               <div class="screen"><img src="{{asset('bundles/flexyfront/assets/img/screens/tablet/2.png')}}" alt="..."></div>
+               <div class="button"></div>
+            </div>
+         </section>
+         <!-- Partners -->
+         <section class="section alter3-partners bg-contrast edge top-left">
+            <div class="container bring-to-front pb-md-9">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="section-heading">
+                        <i class="fas fa-handshake fa-3x accent mb-3"></i>
+                        <h3 class="text-alternate heading-line">We've partnered with awesome folks</h3>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, atque eaque eius esse et harum inventore ipsam laboriosam modi nam necessitatibus nemo pariatur provident.</p>
+                     </div>
+                     <ul class="nav">
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/1.png')}}" class="icon" alt=""></li>
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/2.png')}}" class="icon" alt=""></li>
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/3.png')}}" class="icon" alt=""></li>
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/4.png')}}" class="icon" alt=""></li>
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/5.png')}}" class="icon" alt=""></li>
+                        <li class="nav-item mr-3 py-2 op-5"><img src="{{asset('bundles/flexyfront/assets/img/logos/6.png')}}" class="icon" alt=""></li>
+                     </ul>
+                     <a href="#!" class="more-link btn btn-outline-primary bold">Learn more</a>
                   </div>
                </div>
             </div>
          </section>
+         <!-- Powerful Features -->
+         <section class="section alter3-features" id="features">
+            <div class="shapes-container">
+               <div class="shape shape-ring shape-ring-1">
+                  <div class="animation animation--rotating"></div>
+               </div>
+               <div class="shape shape-ring shape-ring-2">
+                  <div class="animation animation--rotating"></div>
+               </div>
+               <div class="shape shape-circle animation--clockwise">
+                  <div></div>
+               </div>
+               <div class="shape background-shape-main"></div>
+            </div>
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-lg-5 order-lg-last">
+                     <div class="section-heading">
+                        <p class="px-2 text-alternate text-uppercase bold">Powerful features await for you</p>
+                        <h2 class="heading-line">A complete feature stack ready to help you</h2>
+                        <p class="lead text-muted my-4 semi-bold">Laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscig elit, sed do eiusmod tempor incididunt ut labore aliqua. Ut enim adi minim veniam, quis nostrud exercitation</p>
+                        <a href="#!" class="more-link btn btn-primary text-contrast bold">Know More</a>
+                     </div>
+                  </div>
+                  <div class="col-lg-7 pr-lg-6">
+                     <div class="row">
+                        <div class="col-lg-6 rotated-cards">
+                           <div data-aos="fade-down" data-aos-delay="0">
+                              <div class="card border-0 shadow mb-5 tilt">
+                                 <div class="card-body py-5 px-4">
+                                    <div class="icon-box rounded-circle gradient gradient-primary-light text-contrast shadow icon-xl mb-3"><i class="icon m-0 pe pe-7s-paint-bucket pe-3x"></i></div>
+                                    <h4 class="bold mb-5">Customizable</h4>
+                                    <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div data-aos="fade-down" data-aos-delay="500">
+                              <div class="card border-0 shadow mb-5 tilt">
+                                 <div class="card-body py-5 px-4">
+                                    <div class="icon-box rounded-circle gradient gradient-primary-light text-contrast shadow icon-xl mb-3"><i class="icon m-0 pe pe-7s-diamond pe-3x"></i></div>
+                                    <h4 class="bold mb-5">Powerful Design</h4>
+                                    <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6 rotated-cards">
+                           <div data-aos="fade-down" data-aos-delay="800">
+                              <div class="card border-0 shadow mb-5 tilt">
+                                 <div class="card-body py-5 px-4">
+                                    <div class="icon-box rounded-circle gradient gradient-primary-light text-contrast shadow icon-xl mb-3"><i class="icon m-0 pe pe-7s-light pe-3x"></i></div>
+                                    <h4 class="bold mb-5">Creative</h4>
+                                    <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div data-aos="fade-down" data-aos-delay="1200">
+                              <div class="card border-0 shadow mb-5 tilt">
+                                 <div class="card-body py-5 px-4">
+                                    <div class="icon-box rounded-circle gradient gradient-primary-light text-contrast shadow icon-xl mb-3"><i class="icon m-0 pe pe-7s-cash pe-3x"></i></div>
+                                    <h4 class="bold mb-5">Affordable</h4>
+                                    <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+      </main>
+
+
+
+
+
+
+
+
+
+    <main>
+
+       
          <!-- .Premium Features -->
          <section class="section features" id="features">
             <div class="container">
@@ -86,17 +174,22 @@
                   <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, nulla, voluptates. Architecto eum minima necessitatibus quo reiciendis! Aliquam culpa doloremque eaque esse illo, nemo nesciunt nobis quia sapiente tenetur veniam.</p>
                </div>
                <div class="row gap-y text-center text-md-left">
-                  <div class="col-md-4 py-4 rounded shadow-hover">
+                  <div class="col-md-3 py-4 rounded shadow-hover">
                      <i class="pe pe-7s-diamond pe-3x mb-3 text-primary"></i>
                      <h5 class="bold">Powerful Design</h5>
                      <p class="">Ab ad aliquam assumenda beatae commodi distinctio dolore dolorum earum error et, exercitationem</p>
                   </div>
-                  <div class="col-md-4 py-4 rounded shadow-hover">
+                  <div class="col-md-3 py-4 rounded shadow-hover">
                      <i class="pe pe-7s-tools pe-3x mb-3 text-primary"></i>
                      <h5 class="bold">Professional Tools</h5>
                      <p class="">Blanditiis cumque, eius error est et exercitationem, explicabo hic natus nobis odit porro quia</p>
                   </div>
-                  <div class="col-md-4 py-4 rounded shadow-hover">
+                  <div class="col-md-3 py-4 rounded shadow-hover">
+                     <i class="pe pe-7s-light pe-3x mb-3 text-primary"></i>
+                     <h5 class="bold">Creative Content</h5>
+                     <p class="">A animi aperiam cupiditate eum incidunt, magni mollitia nam nemo non officia omnis, quasi quisquam</p>
+                  </div>
+                  <div class="col-md-3 py-4 rounded shadow-hover">
                      <i class="pe pe-7s-light pe-3x mb-3 text-primary"></i>
                      <h5 class="bold">Creative Content</h5>
                      <p class="">A animi aperiam cupiditate eum incidunt, magni mollitia nam nemo non officia omnis, quasi quisquam</p>
@@ -207,6 +300,23 @@
                </div>
             </div>
          </section>
+
+        <!-- Partners Slider -->
+                <section class="section">
+                    <div class="container py-5 border-bottom">
+                    <div class="swiper-container" data-sw-show-items="5" data-sw-space-between="30" data-sw-autoplay="2500" data-sw-loop="true">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/1.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/2.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/3.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/4.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/5.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                            <div class="swiper-slide"><img src="{{asset('bundles/flexyfront/assets/img/logos/6.png')}}" class="img-responsive" alt="" style="max-height: 60px"></div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
          <!-- Pricing -->
          <section class="section pricing-plans" id="pricing">
             <div class="shapes-container overflow-clear">
