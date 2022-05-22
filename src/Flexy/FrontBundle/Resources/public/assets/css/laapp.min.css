@@ -25947,7 +25947,7 @@ main {
 }
 
 .navigation {
-	background-color: #fff;
+	background-color: transparent;
 	min-height: 90px;
 	-webkit-transition: all .3s ease 0s;
 	transition: all .3s ease 0s
@@ -26081,7 +26081,7 @@ main {
 .navigation .collapse {
 	-webkit-transition: left .4s ease 0s;
 	transition: left .4s ease 0s;
-	background-color: #fff;
+	background-color: #333;
 	width: 250px;
 	position: fixed;
 	margin: 0;
@@ -26120,7 +26120,7 @@ main {
 }
 
 .navigation .nav-link {
-	color: #b3d91a;
+	color: #fff;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-size: .9rem;
 	font-weight: 700;
@@ -26150,7 +26150,7 @@ main {
 
 .navigation.navbar-sticky {
 	position: fixed!important;
-	background-color: #fff;
+	background-color: #00000090;
 	left: 0;
 	top: 0;
 	right: 0;
@@ -26312,11 +26312,11 @@ main {
 		color: #333
 	}
 	.navigation.navbar-sticky {
-		background-color: #fff;
+		background-color: #00000090;
 		top: 0
 	}
 	.navigation.navbar-sticky .nav-link {
-		color: #333
+		color: #fff
 	}
 	.navigation.navbar-sticky .nav-link.active,
 	.navigation.navbar-sticky .nav-link:hover {
@@ -28609,7 +28609,7 @@ p {
 
 .logo {
     padding-top: 10px;
-	max-width: 290px
+	max-width: 270px
 }
 
 .swiper-container .swiper-pagination-top {
